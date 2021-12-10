@@ -19,11 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::resource('pagos', PagosController::class)->names('pagos');
 Route::get('pagos/validate/{id_pago}', [PagosController::class, 'validarPagoPorId']);
 
-Route::get('pagos/delete/{id_pago}', [PagosController::class, 'deletePago']);
-
-Route::post('pagos/update/{pago}', [PagosController::class, 'updatePago']);
-
 Route::post('pagos/insert/{pago}', [PagosController::class, 'insertPago']);
+
+Route::delete('pagos/delete/{id_pago}', [PagosController::class, 'deletePago']);
+
+Route::put('pagos/update/{pago}', [PagosController::class, 'updatePago']);

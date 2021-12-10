@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Pagos;
 use Illuminate\Http\Request;
 
-
 class PagosController extends Controller
 {
     public function validarPagoPorId($id)
@@ -22,23 +21,16 @@ class PagosController extends Controller
         return response()->json($pago, 201);
     }
 
-    public function deletePago($id)
+    public function deletePago(Pagos $pago)
     {
-        $pago = Pagos::findorfail($id);
-        if ($pago) {
-            $pago->delete();
-            return response()->json($pago, 201);
-        }
+        $pago->delete();
+        return response()->json(null, 204);
+
     }
 
-
-    public function updatePago(Request $request)
+    public function updatePago(Request $request, Pagos $pago)
     {
-        $pago = Pagos::findorfail($request->id);
-
-        if ($pago) {
             $pago->update($request->all());
-            return response()->json($pago, 201);
-        }
-    }
+            return response()->json($pago, 200);
+   }
 }
